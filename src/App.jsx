@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import SmartSurveillance from './pages/Services/SmartSurveillance';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/service/smart-surveillance-systems" element={<SmartSurveillance/>} />
         </Routes>
       </BrowserRouter>
     </div>
