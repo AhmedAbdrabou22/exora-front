@@ -1,0 +1,83 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "solutions": "Solutions",
+    "products": "Products",
+    "aboutUs": "About Us",
+    "login": "Login"
+  },
+  "customScenes": {
+    "title": "Custom Scenes & Routines",
+    "subtitle": "Get creative by combining multiple devices into one smart scene & activate it with a single click or voice command",
+    "setupButton": "Set Up This Scene",
+    "scenes": {
+      "bedtime": {
+        "title": "Bedtime",
+        "sceneTitle": "Bedtime Scene",
+        "description": "Create the perfect environment for a good night's sleep with automated routines.",
+        "features": [
+          "Gradually dim lights to a warm glow 30 minutes before bedtime",
+          "Lower blinds and adjust room temperature to optimal sleeping conditions",
+          "Play relaxing sounds or white noise through smart speakers",
+          "Automatically turn off all TVs and non-essential devices",
+          "Set your alarm and coffee maker for the morning"
+        ]
+      },
+      "dinnerTime": {
+        "title": "Dinner Time",
+        "sceneTitle": "Dinner Time Scene",
+        "description": "Set the perfect ambiance for your evening meal with one tap.",
+        "features": [
+          "Adjust dining area lights to a warm, inviting setting",
+          "Start your favorite dinner playlist on the smart speakers",
+          "Turn on kitchen appliances needed for meal preparation",
+          "Adjust thermostat for comfortable dining temperature",
+          "Send notifications to family members that dinner is ready"
+        ]
+      },
+      "movieNight": {
+        "title": "Movie Night",
+        "sceneTitle": "Movie Night Scene",
+        "description": "Transform your living room into the ultimate home theater experience.",
+        "features": [
+          "Dim all living room lights to cinema mode",
+          "Close blinds or curtains for optimal viewing",
+          "Power on TV, sound system, and streaming device",
+          "Adjust room temperature for comfort",
+          "Set Do Not Disturb mode on connected devices"
+        ]
+      },
+      "workMode": {
+        "title": "Work Mode",
+        "sceneTitle": "Work Mode Scene",
+        "description": "Optimize your home office for productivity and focus.",
+        "features": [
+          "Adjust lighting to bright, cool tones for alertness",
+          "Set room temperature to optimal working conditions",
+          "Turn on white noise or focus music at low volume",
+          "Minimize notifications on connected devices",
+          "Schedule regular break reminders"
+        ]
+      },
+      "awayMode": {
+        "title": "Away Mode",
+        "sceneTitle": "Away Mode Scene",
+        "description": "Keep your home secure and efficient while you're gone.",
+        "features": [
+          "Randomly turn lights on and off to simulate occupancy",
+          "Adjust thermostat to energy-saving settings",
+          "Arm security system and motion sensors",
+          "Receive notifications for any unusual activity",
+          "Turn off non-essential appliances and water heater"
+        ]
+      }
+    }
+  },
+  "brands": {
+    "title": "Our Partners",
+    "subtitle": "We collaborate with leading brands to deliver the best IoT solutions"
+  }
+}
