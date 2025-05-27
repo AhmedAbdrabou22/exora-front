@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import { GB, EG } from 'country-flag-icons/react/3x2';
+import Logo from "../../../assets/logo.png"
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +36,11 @@ const Navbar = () => {
                     {/* Logo Section */}
                     <div className="flex-shrink-0">
                         <a href="/" className="flex items-center">
-                            <h1 className="text-[#1F3A93] font-bold text-2xl">EXORA</h1>
-                            {/* Replace with your actual logo: <img src="/logo.png" alt="Exora Logo" className="h-10" /> */}
+                            <img 
+                                src={Logo} 
+                                alt="Exora"
+                                className="h-12 w-auto md:h-14 lg:h-16 object-contain"
+                            />
                         </a>
                     </div>
                     {/* Mobile Menu Button */}

@@ -1,0 +1,225 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+const SecurityFeaturesSection = () => {
+    const [visibleSections, setVisibleSections] = useState<number[]>([]);
+    const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    const features = [
+        {
+            id: 1,
+            title: "الأقفال الذكية",
+            subtitle: "Smart Locks Technology",
+            description: "تقنية متطورة لقفل وفتح الأبواب بطرق متعددة آمنة ومريحة. يمكنك التحكم في منزلك أو مكتبك من أي مكان في العالم.",
+            details: [
+                "فتح بالبصمة، الكارت، الكود، أو التطبيق",
+                "تسجيل شامل لجميع عمليات الدخول والخروج",
+                "إمكانية تحديد أوقات الدخول لكل شخص",
+                "إنذارات فورية في حالة محاولة الاختراق"
+            ],
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+            icon: "🔐",
+            color: "from-blue-500 to-cyan-500"
+        },
+        {
+            id: 2,
+            title: "أنظمة الإنتركم الذكي",
+            subtitle: "Smart Video Intercom",
+            description: "تواصل آمن ومرئي مع الزوار قبل السماح لهم بالدخول. رؤية واضحة وصوت نقي مع إمكانية التسجيل والحفظ.",
+            details: [
+                "شاشة عالية الوضوح مع صوت نقي",
+                "إمكانية الرد من الموبايل في أي مكان",
+                "تسجيل تلقائي لجميع المكالمات",
+                "رؤية ليلية متطورة للأمان الكامل"
+            ],
+            image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop",
+            icon: "📹",
+            color: "from-purple-500 to-pink-500"
+        },
+        {
+            id: 3,
+            title: "أنظمة البصمة والكارت",
+            subtitle: "Access Control Systems",
+            description: "حلول متقدمة لإدارة الدخول في المؤسسات والشركات مع تتبع دقيق لأوقات الحضور والانصراف.",
+            details: [
+                "تسجيل دقيق لأوقات الحضور والانصراف",
+                "إدارة الصلاحيات حسب المستوى الوظيفي",
+                "تقارير مفصلة وإحصائيات شاملة",
+                "ربط مع أنظمة الرواتب والموارد البشرية"
+            ],
+            image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=600&h=400&fit=crop",
+            icon: "👆",
+            color: "from-green-500 to-emerald-500"
+        },
+        {
+            id: 4,
+            title: "الحساسات الأمنية",
+            subtitle: "Security Sensors Network",
+            description: "شبكة متكاملة من الحساسات الذكية لكشف أي تحرك مشبوه أو خطر محتمل مع إنذارات فورية.",
+            details: [
+                "حساسات حركة بتقنية الأشعة تحت الحمراء",
+                "حساسات الأبواب والنوافذ المغناطيسية",
+                "أجهزة كشف الدخان والغازات الضارة",
+                "إنذارات فورية على الموبايل والشاشات"
+            ],
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+            icon: "🚨",
+            color: "from-red-500 to-orange-500"
+        }
+    ];
+
+    useEffect(() => {
+        const observers = sectionRefs.current.map((ref, index) => {
+            if (!ref) return null;
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setVisibleSections(prev =>
+                                prev.includes(index) ? prev : [...prev, index]
+                            );
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+
+            observer.observe(ref);
+            return observer;
+        });
+
+        return () => {
+            observers.forEach(observer => observer?.disconnect());
+        };
+    }, []);
+
+    return (
+        <section className="py-20 bg-gradient-to-br from-[#0A1128] via-[#001122] to-[#1F3A93] relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-32 right-20 w-64 h-64 bg-[#00A4FF] rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 left-16 w-48 h-48 bg-[#1F3A93] rounded-full blur-2xl animate-bounce"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#00A4FF]/30 rounded-full blur-xl animate-ping"></div>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                {/* Section Header */}
+                <div className="text-center mb-20">
+                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A4FF]/20 to-[#1F3A93]/20 backdrop-blur-sm border border-[#00A4FF]/30 rounded-full px-6 py-3 mb-6 hover:scale-105 transition-transform duration-300">
+                        <span className="text-3xl animate-pulse">⚡</span>
+                        <span className="text-[#00A4FF] font-semibold">مميزات أنظمة الأمان</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                        <span className="bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] bg-clip-text text-transparent">
+                            تقنيات متطورة
+                        </span>
+                    </h2>
+
+                    <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                        اكتشف كيف تعمل أنظمة الأمان المتكاملة لحماية ممتلكاتك بأحدث التقنيات العالمية
+                    </p>
+                </div>
+
+                {/* Features List */}
+                <div className="space-y-32">
+                    {features.map((feature, index) => (
+                        <div
+                            key={feature.id}
+                            ref={el => sectionRefs.current[index] = el}
+                            className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${visibleSections.includes(index)
+                                    ? 'opacity-100 translate-x-0'
+                                    : index % 2 === 0
+                                        ? 'opacity-0 translate-x-20'
+                                        : 'opacity-0 -translate-x-20'
+                                }`}
+                        >
+                            {/* Content Side - Always on the right for Arabic */}
+                            <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} space-y-6`}>
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center text-2xl shadow-lg`}>
+                                        {feature.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-3xl font-bold text-white mb-2">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-[#00A4FF] font-semibold">
+                                            {feature.subtitle}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p className="text-xl text-gray-300 leading-relaxed">
+                                    {feature.description}
+                                </p>
+
+                                <div className="space-y-4">
+                                    {feature.details.map((detail, detailIndex) => (
+                                        <div
+                                            key={detailIndex}
+                                            className={`flex items-start gap-4 transition-all duration-500 ${visibleSections.includes(index)
+                                                    ? 'opacity-100 translate-x-0'
+                                                    : 'opacity-0 translate-x-10'
+                                                }`}
+                                            style={{ transitionDelay: `${detailIndex * 200}ms` }}
+                                        >
+                                            <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${feature.color} mt-2 flex-shrink-0 animate-pulse`}></div>
+                                            <span className="text-gray-300 leading-relaxed">{detail}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="pt-6">
+                                    <button className={`px-8 py-4 bg-gradient-to-r ${feature.color} text-white rounded-xl font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg`}>
+                                        اعرف المزيد
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Image Side - Always on the left for Arabic */}
+                            <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} relative group`}>
+                                <div className="relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-6 hover:border-[#00A4FF]/50 transition-all duration-500">
+                                    {/* Glow Effect */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
+
+                                    <div className="relative overflow-hidden rounded-2xl">
+                                        <img
+                                            src={feature.image}
+                                            alt={feature.title}
+                                            className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/60 via-transparent to-transparent"></div>
+
+                                        {/* Floating Icon */}
+                                        <div className={`absolute top-6 right-6 w-12 h-12 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                            {feature.icon}
+                                        </div>
+                                    </div>
+
+                                    {/* Tech Specs Overlay */}
+                                    <div className="absolute bottom-6 left-6 right-6 bg-black/50 backdrop-blur-sm rounded-xl p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                                        <h4 className="text-white font-bold mb-2">المواصفات التقنية</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            <span className="px-3 py-1 bg-[#00A4FF]/20 text-[#00A4FF] rounded-full text-sm">عالي الدقة</span>
+                                            <span className="px-3 py-1 bg-[#00A4FF]/20 text-[#00A4FF] rounded-full text-sm">مقاوم للماء</span>
+                                            <span className="px-3 py-1 bg-[#00A4FF]/20 text-[#00A4FF] rounded-full text-sm">توفير طاقة</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Decorative Elements */}
+                                <div className={`absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r ${feature.color} rounded-full opacity-60 animate-ping`}></div>
+                                <div className={`absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r ${feature.color} rounded-full opacity-40 animate-pulse`}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+
+            </div>
+        </section>
+    );
+};
+
+export default SecurityFeaturesSection;
