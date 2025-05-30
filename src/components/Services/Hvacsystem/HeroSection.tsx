@@ -12,11 +12,13 @@ import {
     Minus,
     Power
 } from 'lucide-react';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 const HeroSection = () => {
     const [temperature, setTemperature] = useState(22);
     const [isOn, setIsOn] = useState(true);
     const [mode, setMode] = useState('cool'); // cool, heat, auto
+    const { isDarkMode } = useTheme();
 
     const increaseTemp = () => {
         if (temperature < 30) {
@@ -53,12 +55,18 @@ const HeroSection = () => {
     };
 
     return (
-        <section className="relative bg-gradient-to-br from-[#0A1128] via-[#1F3A93] to-[#0A1128] py-20 px-4 overflow-hidden">
+        <section className={`relative py-20 px-4 overflow-hidden transition-all duration-500 ${isDarkMode
+                ? 'bg-gradient-to-br from-[#0A1128] via-[#1F3A93] to-[#0A1128]'
+                : 'bg-gradient-to-br from-blue-50 via-white to-blue-100'
+            }`}>
             {/* Background Effects */}
             <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-20 left-10 w-32 h-32 bg-[#00A4FF] rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-24 h-24 bg-[#1F3A93] rounded-full blur-xl animate-bounce"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#00A4FF]/20 rounded-full blur-2xl animate-ping"></div>
+                <div className={`absolute top-20 left-10 w-32 h-32 rounded-full blur-xl animate-pulse transition-colors duration-500 ${isDarkMode ? 'bg-[#00A4FF]' : 'bg-[#1F3A93]'
+                    }`}></div>
+                <div className={`absolute bottom-20 right-10 w-24 h-24 rounded-full blur-xl animate-bounce transition-colors duration-500 ${isDarkMode ? 'bg-[#1F3A93]' : 'bg-[#00A4FF]'
+                    }`}></div>
+                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full blur-2xl animate-ping transition-colors duration-500 ${isDarkMode ? 'bg-[#00A4FF]/20' : 'bg-[#1F3A93]/20'
+                    }`}></div>
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
@@ -66,22 +74,31 @@ const HeroSection = () => {
                     {/* Interactive AC Control Section */}
                     <div className="relative">
                         {/* Main AC Control Panel */}
-                        <div className="relative bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 mx-auto max-w-md border border-white/20">
+                        <div className={`relative backdrop-blur-md rounded-3xl shadow-2xl p-8 mx-auto max-w-md border transition-all duration-500 ${isDarkMode
+                                ? 'bg-white/10 border-white/20'
+                                : 'bg-white/80 border-gray-200 shadow-xl'
+                            }`}>
 
                             {/* Header */}
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="text-2xl">{getModeIcon()}</div>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-white">غرفة المعيشة</h3>
-                                        <p className="text-sm text-gray-300">تكييف ذكي</p>
+                                        <h3 className={`text-lg font-semibold transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                                            }`}>غرفة المعيشة</h3>
+                                        <p className={`text-sm transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                            }`}>تكييف ذكي</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={togglePower}
                                     className={`p-3 rounded-full transition-all duration-300 ${isOn
-                                        ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-lg shadow-[#00A4FF]/25'
-                                        : 'bg-gray-600'
+                                        ? isDarkMode
+                                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-lg shadow-[#00A4FF]/25'
+                                            : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] shadow-lg shadow-[#1F3A93]/25'
+                                        : isDarkMode
+                                            ? 'bg-gray-600'
+                                            : 'bg-gray-400'
                                         }`}
                                 >
                                     <Power className="w-5 h-5 text-white" />
@@ -91,12 +108,17 @@ const HeroSection = () => {
                             {/* Temperature Display */}
                             <div className="text-center py-8 mb-6">
                                 <div className={`text-6xl font-bold mb-4 transition-all duration-500 ${isOn
-                                    ? 'bg-gradient-to-r from-[#00A4FF] to-white bg-clip-text text-transparent'
-                                    : 'text-gray-500'
+                                    ? isDarkMode
+                                        ? 'bg-gradient-to-r from-[#00A4FF] to-white bg-clip-text text-transparent'
+                                        : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] bg-clip-text text-transparent'
+                                    : isDarkMode
+                                        ? 'text-gray-500'
+                                        : 'text-gray-400'
                                     }`}>
                                     {temperature}°C
                                 </div>
-                                <div className="text-gray-300 mb-6">درجة الحرارة المطلوبة</div>
+                                <div className={`mb-6 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                    }`}>درجة الحرارة المطلوبة</div>
 
                                 {/* Temperature Controls */}
                                 <div className="flex items-center justify-center gap-6">
@@ -104,14 +126,19 @@ const HeroSection = () => {
                                         onClick={decreaseTemp}
                                         disabled={!isOn || temperature <= 16}
                                         className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${isOn && temperature > 16
-                                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] hover:scale-110 shadow-lg shadow-[#00A4FF]/25'
-                                            : 'bg-gray-600 cursor-not-allowed'
+                                            ? isDarkMode
+                                                ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] hover:scale-110 shadow-lg shadow-[#00A4FF]/25'
+                                                : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] hover:scale-110 shadow-lg shadow-[#1F3A93]/25'
+                                            : isDarkMode
+                                                ? 'bg-gray-600 cursor-not-allowed'
+                                                : 'bg-gray-400 cursor-not-allowed'
                                             }`}
                                     >
                                         <Minus className="w-6 h-6 text-white" />
                                     </button>
 
-                                    <div className="text-white font-semibold">
+                                    <div className={`font-semibold transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                                        }`}>
                                         {isOn ? 'تشغيل' : 'إيقاف'}
                                     </div>
 
@@ -119,8 +146,12 @@ const HeroSection = () => {
                                         onClick={increaseTemp}
                                         disabled={!isOn || temperature >= 30}
                                         className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${isOn && temperature < 30
-                                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] hover:scale-110 shadow-lg shadow-[#00A4FF]/25'
-                                            : 'bg-gray-600 cursor-not-allowed'
+                                            ? isDarkMode
+                                                ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] hover:scale-110 shadow-lg shadow-[#00A4FF]/25'
+                                                : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] hover:scale-110 shadow-lg shadow-[#1F3A93]/25'
+                                            : isDarkMode
+                                                ? 'bg-gray-600 cursor-not-allowed'
+                                                : 'bg-gray-400 cursor-not-allowed'
                                             }`}
                                     >
                                         <Plus className="w-6 h-6 text-white" />
@@ -140,10 +171,16 @@ const HeroSection = () => {
                                         onClick={() => setMode(modeOption.key)}
                                         disabled={!isOn}
                                         className={`p-3 rounded-xl text-center transition-all duration-300 ${mode === modeOption.key && isOn
-                                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] text-white shadow-lg'
+                                            ? isDarkMode
+                                                ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] text-white shadow-lg'
+                                                : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] text-white shadow-lg'
                                             : isOn
-                                                ? 'bg-white/10 text-gray-300 hover:bg-white/20'
-                                                : 'bg-gray-600 text-gray-500 cursor-not-allowed'
+                                                ? isDarkMode
+                                                    ? 'bg-white/10 text-gray-300 hover:bg-white/20'
+                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                                : isDarkMode
+                                                    ? 'bg-gray-600 text-gray-500 cursor-not-allowed'
+                                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                             }`}
                                     >
                                         <div className="text-lg mb-1">{modeOption.icon}</div>
@@ -154,136 +191,133 @@ const HeroSection = () => {
 
                             {/* Status Indicators */}
                             <div className="grid grid-cols-3 gap-4">
-                                <div className="text-center p-3 bg-[#00A4FF]/20 backdrop-blur-sm rounded-lg border border-[#00A4FF]/30">
-                                    <Thermometer className={`w-6 h-6 mx-auto mb-2 ${isOn ? 'text-[#00A4FF]' : 'text-gray-500'}`} />
-                                    <span className="text-xs text-gray-300">درجة الحرارة</span>
+                                <div className={`text-center p-3 backdrop-blur-sm rounded-lg border transition-all duration-500 ${isDarkMode
+                                        ? 'bg-[#00A4FF]/20 border-[#00A4FF]/30'
+                                        : 'bg-[#1F3A93]/10 border-[#1F3A93]/30'
+                                    }`}>
+                                    <Thermometer className={`w-6 h-6 mx-auto mb-2 transition-colors duration-500 ${isOn
+                                            ? isDarkMode ? 'text-[#00A4FF]' : 'text-[#1F3A93]'
+                                            : isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                                        }`} />
+                                    <span className={`text-xs transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                        }`}>درجة الحرارة</span>
                                 </div>
-                                <div className="text-center p-3 bg-[#00A4FF]/20 backdrop-blur-sm rounded-lg border border-[#00A4FF]/30">
-                                    <Clock className={`w-6 h-6 mx-auto mb-2 ${isOn ? 'text-[#00A4FF]' : 'text-gray-500'}`} />
-                                    <span className="text-xs text-gray-300">المؤقت</span>
+                                <div className={`text-center p-3 backdrop-blur-sm rounded-lg border transition-all duration-500 ${isDarkMode
+                                        ? 'bg-[#00A4FF]/20 border-[#00A4FF]/30'
+                                        : 'bg-[#1F3A93]/10 border-[#1F3A93]/30'
+                                    }`}>
+                                    <Clock className={`w-6 h-6 mx-auto mb-2 transition-colors duration-500 ${isOn
+                                            ? isDarkMode ? 'text-[#00A4FF]' : 'text-[#1F3A93]'
+                                            : isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                                        }`} />
+                                    <span className={`text-xs transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                        }`}>المؤقت</span>
                                 </div>
-                                <div className="text-center p-3 bg-[#00A4FF]/20 backdrop-blur-sm rounded-lg border border-[#00A4FF]/30">
-                                    <Wifi className={`w-6 h-6 mx-auto mb-2 ${isOn ? 'text-[#00A4FF] animate-pulse' : 'text-gray-500'}`} />
-                                    <span className="text-xs text-gray-300">متصل</span>
+                                <div className={`text-center p-3 backdrop-blur-sm rounded-lg border transition-all duration-500 ${isDarkMode
+                                        ? 'bg-[#00A4FF]/20 border-[#00A4FF]/30'
+                                        : 'bg-[#1F3A93]/10 border-[#1F3A93]/30'
+                                    }`}>
+                                    <Wifi className={`w-6 h-6 mx-auto mb-2 transition-colors duration-500 ${isOn
+                                            ? isDarkMode ? 'text-[#00A4FF] animate-pulse' : 'text-[#1F3A93] animate-pulse'
+                                            : isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                                        }`} />
+                                    <span className={`text-xs transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                        }`}>متصل</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Floating Elements */}
                         <div className={`absolute -top-4 -right-4 p-3 rounded-full shadow-lg transition-all duration-300 ${isOn
-                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-[#00A4FF]/25 animate-bounce'
-                            : 'bg-gray-600'
+                            ? isDarkMode
+                                ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-[#00A4FF]/25 animate-bounce'
+                                : 'bg-gradient-to-r from-[#1F3A93] to-[#00A4FF] shadow-[#1F3A93]/25 animate-bounce'
+                            : isDarkMode
+                                ? 'bg-gray-600'
+                                : 'bg-gray-400'
                             }`}>
-                            <Wifi className="w-6 h-6 text-white" />
+                            <Smartphone className="w-6 h-6 text-white" />
                         </div>
-
-                        <div className={`absolute -bottom-4 -left-4 p-3 rounded-full shadow-lg transition-all duration-300 ${isOn
-                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-[#00A4FF]/25 animate-pulse'
-                            : 'bg-gray-600'
-                            }`}>
-                            <Leaf className="w-6 h-6 text-white" />
-                        </div>
-
-                        <div className={`absolute top-1/2 -left-8 p-2 rounded-full shadow-lg transition-all duration-300 ${isOn
-                            ? 'bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] shadow-[#00A4FF]/25'
-                            : 'bg-gray-600'
-                            }`}>
-                            <Mic className="w-4 h-4 text-white" />
-                        </div>
-
                     </div>
-                    {/* Content Section */}
-                    <div className="space-y-8">
-                        {/* Badge */}
-                        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A4FF]/20 to-[#1F3A93]/20 backdrop-blur-sm border border-[#00A4FF]/30 rounded-full px-6 py-3 hover:scale-105 transition-transform duration-300">
-                            <span className="text-2xl animate-spin-slow">❄️</span>
-                            <span className="text-[#00A4FF] font-semibold">أنظمة التكييف الذكية</span>
-                        </div>
 
-                        {/* Main Heading */}
+                    {/* Content Section */}
+                    <div className={`space-y-8 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                        }`}>
+                        {/* Header */}
                         <div className="space-y-4">
-                            <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight">
-                                تحكم ذكي في
-                                <span className="bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] bg-clip-text text-transparent block">
-                                    أنظمة التكييف
+                            <div className={`inline-flex items-center gap-3 backdrop-blur-sm border rounded-full px-6 py-3 mb-6 hover:scale-105 transition-all duration-300 ${isDarkMode
+                                    ? 'bg-[#00A4FF]/20 border-[#00A4FF]/30'
+                                    : 'bg-[#1F3A93]/10 border-[#1F3A93]/30'
+                                }`}>
+                                <span className="text-3xl animate-spin-slow">❄️</span>
+                                <span className={`font-semibold transition-colors duration-500 ${isDarkMode ? 'text-[#00A4FF]' : 'text-[#1F3A93]'
+                                    }`}>أنظمة التكييف الذكي</span>
+                            </div>
+
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                                تحكم ذكي في{' '}
+                                <span className={`transition-colors duration-500 ${isDarkMode ? 'text-[#00A4FF]' : 'text-[#1F3A93]'
+                                    }`}>
+                                    المناخ
                                 </span>
                             </h1>
-                            <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-                                أنظمة متطورة للتحكم في وحدات التكييف الهوائي داخل المباني السكنية والتجارية
-                                عن بُعد أو بشكل أوتوماتيكي، من خلال تطبيقات ذكية وأوامر صوتية
+
+                            <p className={`text-xl leading-relaxed transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                }`}>
+                                أنظمة تكييف ذكية متطورة توفر الراحة المثلى مع توفير الطاقة.
+                                تحكم كامل عن بُعد مع جدولة تلقائية وتحليلات استهلاك ذكية.
                             </p>
                         </div>
 
-                        {/* Key Benefits */}
-                        <div className="grid sm:grid-cols-2 gap-4">
-                            <div className="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                                <div className="w-10 h-10 bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] rounded-lg flex items-center justify-center">
-                                    <Leaf className="w-5 h-5 text-white" />
+                        {/* Features Grid */}
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {[
+                                { icon: Smartphone, title: 'تحكم عن بُعد', desc: 'تطبيق ذكي سهل الاستخدام' },
+                                { icon: Leaf, title: 'توفير الطاقة', desc: 'تقليل استهلاك الكهرباء بنسبة 40%' },
+                                { icon: Mic, title: 'تحكم صوتي', desc: 'متوافق مع المساعدات الصوتية' },
+                                { icon: Settings, title: 'جدولة ذكية', desc: 'برمجة تلقائية حسب الوقت' }
+                            ].map((feature, index) => (
+                                <div key={index} className={`flex items-start gap-4 p-4 rounded-xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${isDarkMode
+                                        ? 'bg-white/5 border-white/10 hover:bg-white/10'
+                                        : 'bg-white/50 border-gray-200 hover:bg-white/80'
+                                    }`}>
+                                    <div className={`p-3 rounded-lg transition-colors duration-500 ${isDarkMode
+                                            ? 'bg-[#00A4FF]/20 text-[#00A4FF]'
+                                            : 'bg-[#1F3A93]/10 text-[#1F3A93]'
+                                        }`}>
+                                        <feature.icon className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <h3 className={`font-semibold mb-2 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                                            }`}>{feature.title}</h3>
+                                        <p className={`text-sm transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                            }`}>{feature.desc}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-semibold text-white">توفير الطاقة</h3>
-                                    <p className="text-sm text-gray-300">تشغيل ذكي وفقاً للحاجة</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                                <div className="w-10 h-10 bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] rounded-lg flex items-center justify-center">
-                                    <Smartphone className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-white">تحكم عن بُعد</h3>
-                                    <p className="text-sm text-gray-300">من أي مكان في العالم</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                                <div className="w-10 h-10 bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] rounded-lg flex items-center justify-center">
-                                    <Clock className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-white">جدولة ذكية</h3>
-                                    <p className="text-sm text-gray-300">تشغيل في أوقات محددة</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                                <div className="w-10 h-10 bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] rounded-lg flex items-center justify-center">
-                                    <Mic className="w-5 h-5 text-white" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-white">أوامر صوتية</h3>
-                                    <p className="text-sm text-gray-300">Alexa & Google Assistant</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <button className="bg-gradient-to-r from-[#00A4FF] to-[#1F3A93] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-[#00A4FF]/25 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
-                                <Home className="w-5 h-5" />
-                                احصل على استشارة مجانية
-                            </button>
-                            <button className="border-2 border-[#00A4FF]/50 hover:border-[#00A4FF] text-gray-300 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-[#00A4FF]/10">
-                                تعرف على المزيد
-                            </button>
-                        </div>
+                        
+
+                        
                     </div>
                 </div>
             </div>
 
-            {/* Custom Styles */}
+            {/* Custom Animations */}
             <style jsx global>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
 
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-      `}</style>
+                .animate-spin-slow {
+                    animation: spin-slow 8s linear infinite;
+                }
+            `}</style>
         </section>
     );
 };
 
 export default HeroSection;
+
