@@ -3,19 +3,22 @@ import { FiMenu, FiX, FiChevronDown, FiSun, FiMoon } from 'react-icons/fi';
 import { GB, EG } from 'country-flag-icons/react/3x2';
 import Logo from "../../../assets/logo.png"
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [language, setLanguage] = useState('en');
     const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
     const { isDarkMode, toggleTheme } = useTheme();
+    const { t, i18n } = useTranslation();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    const changeLanguage = (lang: string) => {
-        setLanguage(lang);
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
     };
 
     const services = [
@@ -30,8 +33,8 @@ const Navbar = () => {
 
     return (
         <nav className={`sticky top-0 z-50 w-full shadow-lg transition-all duration-500 border-b ${isDarkMode
-                ? 'bg-gradient-to-r from-[#0A1128] via-[#1a1f3a] to-[#0A1128] border-gray-700 shadow-gray-900/50'
-                : 'bg-gradient-to-r from-blue-50 via-white to-blue-50 border-gray-200 shadow-gray-200/50'
+            ? 'bg-gradient-to-r from-[#0A1128] via-[#1a1f3a] to-[#0A1128] border-gray-700 shadow-gray-900/50'
+            : 'bg-gradient-to-r from-blue-50 via-white to-blue-50 border-gray-200 shadow-gray-200/50'
             }`}>
             <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
                 <div className="flex justify-between items-center h-20">
@@ -52,8 +55,8 @@ const Navbar = () => {
                         <button
                             onClick={toggleTheme}
                             className={`mr-3 p-2 rounded-lg transition-all duration-300 transform hover:scale-110 ${isDarkMode
-                                    ? 'text-yellow-400 hover:bg-gray-800 hover:text-yellow-300 bg-gray-700/50'
-                                    : 'text-gray-600 hover:bg-blue-100 hover:text-blue-600 bg-gray-100/50'
+                                ? 'text-yellow-400 hover:bg-gray-800 hover:text-yellow-300 bg-gray-700/50'
+                                : 'text-gray-600 hover:bg-blue-100 hover:text-blue-600 bg-gray-100/50'
                                 }`}
                             aria-label="Toggle theme"
                         >
@@ -81,8 +84,8 @@ const Navbar = () => {
                         <button
                             onClick={toggleMenu}
                             className={`focus:outline-none text-2xl transition-all duration-300 transform hover:scale-110 ${isDarkMode
-                                    ? 'text-[#1F3A93] hover:text-[#00A4FF]'
-                                    : 'text-gray-700 hover:text-[#00A4FF]'
+                                ? 'text-[#1F3A93] hover:text-[#00A4FF]'
+                                : 'text-gray-700 hover:text-[#00A4FF]'
                                 }`}
                         >
                             {isOpen ? <FiX /> : <FiMenu />}
@@ -91,26 +94,26 @@ const Navbar = () => {
 
                     {/* Desktop Navigation Links */}
                     <div className={`hidden md:flex items-center justify-center flex-2 w-50 p-4 links-navbar rounded-xl transition-all duration-500 ${isDarkMode
-                            ? 'bg-gradient-to-br from-[#1F3A93] via-[#2a4fb3] to-[#00A4FF] shadow-lg shadow-blue-900/30'
-                            : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 border border-gray-200 shadow-lg shadow-gray-200/50'
+                        ? 'bg-gradient-to-br from-[#1F3A93] via-[#2a4fb3] to-[#00A4FF] shadow-lg shadow-blue-900/30'
+                        : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 border border-gray-200 shadow-lg shadow-gray-200/50'
                         }`}>
                         <ul className="flex space-x-8">
                             <li>
-                                <a
-                                    href="/"
+                                <Link
+                                    to="/"
                                     className={`font-medium relative py-2 transition-all duration-300 after:absolute after:w-0 after:h-0.5 after:bg-[#00A4FF] after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full ${isDarkMode
-                                            ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
-                                            : 'text-gray-700 hover:text-[#00A4FF]'
+                                        ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
+                                        : 'text-gray-700 hover:text-[#00A4FF]'
                                         }`}
                                 >
-                                    Home
-                                </a>
+                                    {t('navigation.home')}
+                                </Link>
                             </li>
                             <li className="relative group">
                                 <div
                                     className={`flex items-center font-medium relative transition-all duration-300 after:absolute after:w-0 after:h-0.5 after:bg-[#00A4FF] after:left-0 after:bottom-0 after:transition-all after:duration-300 group-hover:after:w-full cursor-pointer ${isDarkMode
-                                            ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
-                                            : 'text-gray-700 hover:text-[#00A4FF]'
+                                        ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
+                                        : 'text-gray-700 hover:text-[#00A4FF]'
                                         }`}
                                     onMouseEnter={() => setServicesDropdownOpen(true)}
                                     onMouseLeave={() => setServicesDropdownOpen(false)}
@@ -134,8 +137,8 @@ const Navbar = () => {
                                                 key={index}
                                                 href={`/service/${service.route}`}
                                                 className={`block px-4 py-3 text-sm transition-all duration-200 text-right hover:transform hover:translate-x-1 ${isDarkMode
-                                                        ? 'text-gray-300 hover:bg-[#1F3A93] hover:text-white'
-                                                        : 'text-gray-700 hover:bg-blue-50 hover:text-[#1F3A93]'
+                                                    ? 'text-gray-300 hover:bg-[#1F3A93] hover:text-white'
+                                                    : 'text-gray-700 hover:bg-blue-50 hover:text-[#1F3A93]'
                                                     }`}
                                             >
                                                 {service.ar}
@@ -148,8 +151,8 @@ const Navbar = () => {
                                 <a
                                     href="/about"
                                     className={`font-medium relative py-2 transition-all duration-300 after:absolute after:w-0 after:h-0.5 after:bg-[#00A4FF] after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full ${isDarkMode
-                                            ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
-                                            : 'text-gray-700 hover:text-[#00A4FF]'
+                                        ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
+                                        : 'text-gray-700 hover:text-[#00A4FF]'
                                         }`}
                                 >
                                     About
@@ -159,8 +162,8 @@ const Navbar = () => {
                                 <a
                                     href="/contact"
                                     className={`font-medium relative py-2 transition-all duration-300 after:absolute after:w-0 after:h-0.5 after:bg-[#00A4FF] after:left-0 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full ${isDarkMode
-                                            ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
-                                            : 'text-gray-700 hover:text-[#00A4FF]'
+                                        ? 'text-white hover:text-[#00A4FF] hover:drop-shadow-lg'
+                                        : 'text-gray-700 hover:text-[#00A4FF]'
                                         }`}
                                 >
                                     Contact
@@ -175,8 +178,8 @@ const Navbar = () => {
                         <button
                             onClick={toggleTheme}
                             className={`p-3 rounded-xl transition-all duration-300 transform hover:scale-110 ${isDarkMode
-                                    ? 'text-yellow-400 hover:bg-gray-800 hover:text-yellow-300 bg-gray-700/50 shadow-lg shadow-gray-900/30'
-                                    : 'text-gray-600 hover:bg-blue-100 hover:text-blue-600 bg-gray-100/50 shadow-lg shadow-gray-200/50'
+                                ? 'text-yellow-400 hover:bg-gray-800 hover:text-yellow-300 bg-gray-700/50 shadow-lg shadow-gray-900/30'
+                                : 'text-gray-600 hover:bg-blue-100 hover:text-blue-600 bg-gray-100/50 shadow-lg shadow-gray-200/50'
                                 }`}
                             aria-label="Toggle theme"
                         >
@@ -214,16 +217,16 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div className={`md:hidden transition-all duration-300 ${isOpen ? 'block' : 'hidden'} shadow-xl ${isDarkMode
-                    ? 'bg-gradient-to-b from-gray-800 to-gray-900 shadow-gray-900/50'
-                    : 'bg-gradient-to-b from-white to-gray-50 shadow-gray-300/50'
+                ? 'bg-gradient-to-b from-gray-800 to-gray-900 shadow-gray-900/50'
+                : 'bg-gradient-to-b from-white to-gray-50 shadow-gray-300/50'
                 }`}>
                 <ul className="flex flex-col py-4 space-y-2 px-4">
                     <li>
                         <a
                             href="/"
                             className={`block py-3 px-2 font-medium transition-all duration-300 rounded-lg ${isDarkMode
-                                    ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
-                                    : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
+                                ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
+                                : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
                                 }`}
                         >
                             Home
@@ -234,8 +237,8 @@ const Navbar = () => {
                             <button
                                 onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                                 className={`flex items-center justify-between w-full font-medium transition-all duration-300 py-3 px-2 rounded-lg ${isDarkMode
-                                        ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
-                                        : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
+                                    ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
+                                    : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
                                     }`}
                             >
                                 <span>Services</span>
@@ -247,8 +250,8 @@ const Navbar = () => {
                                         key={index}
                                         href={`/service/${service.route}`}
                                         className={`block py-2 px-3 text-sm text-right transition-all duration-300 rounded-lg ${isDarkMode
-                                                ? 'text-gray-400 hover:text-[#00A4FF] hover:bg-gray-700/30'
-                                                : 'text-gray-600 hover:text-[#00A4FF] hover:bg-blue-50'
+                                            ? 'text-gray-400 hover:text-[#00A4FF] hover:bg-gray-700/30'
+                                            : 'text-gray-600 hover:text-[#00A4FF] hover:bg-blue-50'
                                             }`}
                                     >
                                         {service.ar}
@@ -261,8 +264,8 @@ const Navbar = () => {
                         <a
                             href="/about"
                             className={`block py-3 px-2 font-medium transition-all duration-300 rounded-lg ${isDarkMode
-                                    ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
-                                    : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
+                                ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
+                                : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
                                 }`}
                         >
                             About Us
@@ -272,8 +275,8 @@ const Navbar = () => {
                         <a
                             href="/contact"
                             className={`block py-3 px-2 font-medium transition-all duration-300 rounded-lg ${isDarkMode
-                                    ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
-                                    : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
+                                ? 'text-gray-300 hover:text-[#00A4FF] hover:bg-gray-700/50'
+                                : 'text-gray-800 hover:text-[#00A4FF] hover:bg-blue-50'
                                 }`}
                         >
                             Contact

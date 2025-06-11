@@ -1,0 +1,9 @@
+{
+  "welcome": "مرحباً",
+  "hello": "أهلاً {{name}}",
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "حولنا",
+    "contact": "اتصل بنا"
+  }
+}

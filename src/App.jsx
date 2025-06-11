@@ -5,6 +5,8 @@ import SmartSurveillance from './pages/Services/SmartSurveillance';
 import SmartLightingControl from './pages/Services/SmartLightingControl';
 import SecuritySystem from './pages/Services/SecuritSystem';
 import HvacSystem from './pages/Services/HvacSystem';
+import './i18n';
+import MediaHomeSystem from './pages/Services/MediaHomeSustem';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
             <Route path="/service/smart-lighting-control" element={<SmartLightingControl />} />
             <Route path="/service/integrated-security-systems" element={<SecuritySystem />} />
             <Route path="/service/smart-hvac-systems" element={<HvacSystem />} />
+            <Route path="/service/home-audio-media-systems" element={<MediaHomeSystem />} />
           </Routes>
         </BrowserRouter>
       </div>
