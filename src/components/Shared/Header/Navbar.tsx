@@ -347,7 +347,7 @@ const Navbar = () => {
         { ar: "أنظمة التكييف الذكي", en: "Smart HVAC Systems", route: "smart-hvac-systems" },
         { ar: "خدمات صيانة ودعم فني 24/7", en: "Maintenance Support Services", route: "maintenance-support-services" },
         { ar: "أنظمة الصوت والميديا المنزلية", en: "Home Audio Media Systems", route: "home-audio-media-systems" },
-        { ar: "البنية التحتية للشبكات", en: "Network Infrastructure", route: "network-infrastructure" }
+        // { ar: "البنية التحتية للشبكات", en: "Network Infrastructure", route: "network-infrastructure" }
     ];
 
     const isRTL = i18n.language === 'ar';
