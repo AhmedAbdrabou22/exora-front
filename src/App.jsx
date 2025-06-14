@@ -9,6 +9,7 @@ import './i18n';
 import MediaHomeSystem from './pages/Services/MediaHomeSustem';
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
+import MaintenanceSupport from './pages/Services/MaintenanceSupport';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/service/integrated-security-systems" element={<SecuritySystem />} />
             <Route path="/service/smart-hvac-systems" element={<HvacSystem />} />
             <Route path="/service/home-audio-media-systems" element={<MediaHomeSystem />} />
+            <Route path="/service/network-infrastructure" element={<MaintenanceSupport/>} />
           </Routes>
         </BrowserRouter>
       </div>
