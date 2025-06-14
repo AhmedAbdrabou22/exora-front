@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
-
+import cartClose from "../../../assets/cartclose.png"
+import fingerClose from "../../../assets/fingerprintclose.png"
+import codeClose from "../../../assets/closecode.png"
 const SecuritySystemTabs = () => {
     const [activeTab, setActiveTab] = useState(0);
     const { isDarkMode } = useTheme();
@@ -20,15 +22,15 @@ const SecuritySystemTabs = () => {
             ],
             images: [
                 {
-                    url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+                    url: fingerClose,
                     title: "قفل بالبصمة"
                 },
                 {
-                    url: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop",
+                    url: codeClose,
                     title: "قفل بالكارت"
                 },
                 {
-                    url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
+                    url: cartClose,
                     title: "قفل بالكود"
                 }
             ]

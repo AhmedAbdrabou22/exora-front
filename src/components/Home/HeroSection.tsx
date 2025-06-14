@@ -7,13 +7,13 @@ const HeroSection = () => {
     return (
         <div className={`relative min-h-[90vh] flex items-center justify-center overflow-hidden transition-all duration-500 ${
             isDarkMode 
-                ? 'bg-gradient-to-br from-[#0A1128] via-[#1a1f3a] to-[#0A1128]' 
+                ? 'bg-[#0A1128]' 
                 : 'bg-gradient-to-br from-blue-50 via-white to-indigo-100'
         }`}>
             {/* Gradient Background */}
             <div className={`absolute inset-0 transition-all duration-500 ${
                 isDarkMode 
-                    ? 'bg-gradient-to-br from-[#1F3A93]/30 to-[#00A4FF]/30 opacity-90' 
+                    ? 'bg-gradient-to-br from-[#0A1128]/30 to-[#00A4FF]/30 opacity-90' 
                     : 'bg-gradient-to-br from-blue-200/40 to-indigo-300/40 opacity-60'
             }`}></div>
             
@@ -55,22 +55,21 @@ const HeroSection = () => {
             
             {/* Content Container */}
             <div className="container mx-auto px-4 relative z-10 text-center">
-                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fadeIn transition-colors duration-500 ${
+                <p className={`text-2xl md:text-2xl lg:text-2xl font-bold mb-4 animate-fadeIn transition-colors duration-500 ${
                     isDarkMode ? 'text-white' : 'text-gray-800'
                 }`}>
-                    Welcome to <span className={`bg-gradient-to-r inline-block text-transparent bg-clip-text drop-shadow-lg transition-all duration-500 ${
-                        isDarkMode 
-                            ? 'from-[#00A4FF] to-[#1F3A93]' 
-                            : 'from-[#1F3A93] to-[#00A4FF]'
-                    }`}>Exora</span>
-                </h1>
+                    مرحبا بك في 
+                </p>
+                <p className={`text-8xl md:text-8xl lg:text-8xl font-bold mb-4 animate-fadeIn transition-colors duration-500 ${
+                    isDarkMode ? 'text-white' : 'text-gray-800'
+                }`}>Exora</p>
                 
                 <p className={`text-xl md:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed transition-colors duration-500 ${
                     isDarkMode 
                         ? 'text-white opacity-90' 
                         : 'text-gray-700 opacity-95'
                 }`}>
-                    Experience the Future of Living, Seamless Smart Home Solutions for a Connected Life
+                   تجربة مستقبل المعيشة، حلول منزلية ذكية سلسة لحياة متصلة
                 </p>
                 
                 <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">

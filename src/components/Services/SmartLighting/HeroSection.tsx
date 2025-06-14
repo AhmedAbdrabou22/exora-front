@@ -6,7 +6,7 @@ const HeroSection = () => {
     const { isDarkMode } = useTheme();
 
     return (
-        <section className={`min-h-screen flex items-center justify-center px-4 transition-all duration-500 ${
+        <section dir={"ltr"} className={`min-h-screen flex items-center justify-center px-4 transition-all duration-500 ${
             isDarkMode 
                 ? 'bg-gradient-to-b from-[#0A1128] to-[#1F3A93]' 
                 : 'bg-gradient-to-b from-blue-50 to-white'

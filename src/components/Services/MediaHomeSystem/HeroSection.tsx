@@ -56,6 +56,8 @@ const HeroSection = () => {
 
     return (
         <div
+        dir={"ltr"}
+        style={{padding:"200px 150px"}}
             ref={containerRef}
             className={`relative w-full min-h-screen overflow-hidden flex items-center justify-center transition-all duration-500 ${
                 isDarkMode 

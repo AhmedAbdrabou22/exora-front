@@ -138,7 +138,7 @@ const InteractiveDemo = () => {
     };
 
     return (
-        <section className={`py-20 relative overflow-hidden transition-all duration-500 ${
+        <section dir={"ltr"} className={`py-20 relative overflow-hidden transition-all duration-500 ${
             isDarkMode 
                 ? 'bg-gradient-to-br from-[#0A1128] via-[#1a1f3a] to-[#0A1128]' 
                 : 'bg-gradient-to-br from-blue-50 via-white to-indigo-100'

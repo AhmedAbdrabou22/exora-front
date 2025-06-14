@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
+import smartLock from "../../../assets/smartlock.png"
 
 const SmartLocksSection = () => {
   const { isDarkMode } = useTheme();
@@ -15,7 +16,7 @@ const SmartLocksSection = () => {
       id: 1,
       title: "قفل بالبصمة الذكي",
       description: "تقنية متطورة للتعرف على البصمة مع حماية عالية",
-      image: "https://cdn.prod.website-files.com/6707a69c07dd409c1b24c384/67cae054aacec9f8ed5c5879_108.png",
+      image: smartLock,
       features: ["تعرف فوري على البصمة", "ذاكرة تخزين 1000 بصمة", "مقاوم للماء والغبار"]
     },
     {

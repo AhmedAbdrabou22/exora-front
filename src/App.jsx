@@ -7,6 +7,8 @@ import SecuritySystem from './pages/Services/SecuritSystem';
 import HvacSystem from './pages/Services/HvacSystem';
 import './i18n';
 import MediaHomeSystem from './pages/Services/MediaHomeSustem';
+import LoginPage from './pages/Auth/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage/>} />
             <Route path="/service/smart-surveillance-systems" element={<SmartSurveillance />} />
             <Route path="/service/smart-lighting-control" element={<SmartLightingControl />} />
             <Route path="/service/integrated-security-systems" element={<SecuritySystem />} />

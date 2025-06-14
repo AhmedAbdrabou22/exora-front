@@ -8,6 +8,9 @@ import {
     Clock
 } from 'lucide-react';
 import { useTheme } from '../../../contexts/ThemeContext';
+import remotecontrol from "../../../assets/remotecontrol.png"
+import savepower from "../../../assets/savepower.png"
+import watchsmartsystem from "../../../assets/watchsmartsystem.png"
 
 const FeaturesSection = () => {
     const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -27,7 +30,7 @@ const FeaturesSection = () => {
                 "مشاركة التحكم مع أفراد العائلة"
             ],
             icon: <Smartphone className="w-8 h-8" />,
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&auto=format",
+            image: remotecontrol,
             direction: "left" // Text left, Image right
         },
         {
@@ -42,7 +45,7 @@ const FeaturesSection = () => {
                 "وضع الطاقة الاقتصادية المتقدم"
             ],
             icon: <Leaf className="w-8 h-8" />,
-            image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&auto=format",
+            image: savepower,
             direction: "right" // Text right, Image left
         },
         {
@@ -57,7 +60,7 @@ const FeaturesSection = () => {
                 "تسجيل البيانات التاريخية"
             ],
             icon: <Thermometer className="w-8 h-8" />,
-            image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=600&h=400&fit=crop&auto=format",
+            image: watchsmartsystem,
             direction: "left" // Text left, Image right
         }
     ];

@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
-
+import smartLockSystem from "../../../assets/smartlocksystem.png";
+import intercom from "../../../assets/intercom.png";
+import systemPrint from "../../../assets/systemprintcart.png";
+import sensor from "../../../assets/sensors.png"
 const SecurityFeaturesSection = () => {
     const [visibleSections, setVisibleSections] = useState<number[]>([]);
     const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -18,7 +21,7 @@ const SecurityFeaturesSection = () => {
                 "إمكانية تحديد أوقات الدخول لكل شخص",
                 "إنذارات فورية في حالة محاولة الاختراق"
             ],
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+            image: smartLockSystem,
             icon: "🔐",
             color: "from-blue-500 to-cyan-500"
         },
@@ -33,7 +36,7 @@ const SecurityFeaturesSection = () => {
                 "تسجيل تلقائي لجميع المكالمات",
                 "رؤية ليلية متطورة للأمان الكامل"
             ],
-            image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop",
+            image: intercom,
             icon: "📹",
             color: "from-purple-500 to-pink-500"
         },
@@ -48,7 +51,7 @@ const SecurityFeaturesSection = () => {
                 "تقارير مفصلة وإحصائيات شاملة",
                 "ربط مع أنظمة الرواتب والموارد البشرية"
             ],
-            image: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=600&h=400&fit=crop",
+            image: systemPrint,
             icon: "👆",
             color: "from-green-500 to-emerald-500"
         },
@@ -63,7 +66,7 @@ const SecurityFeaturesSection = () => {
                 "أجهزة كشف الدخان والغازات الضارة",
                 "إنذارات فورية على الموبايل والشاشات"
             ],
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+            image: sensor,
             icon: "🚨",
             color: "from-red-500 to-orange-500"
         }

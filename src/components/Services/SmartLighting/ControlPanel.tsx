@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
-
+import kitchenPhoto from "../../../assets/KitchenLightingControl.png"
 const ControlPanel = () => {
     const [rooms, setRooms] = useState([
         { id: 1, name: 'المطبخ', isOn: false, brightness: 75 },
@@ -24,7 +24,7 @@ const ControlPanel = () => {
     };
 
     return (
-        <section className={`py-20 transition-all duration-500 ${
+        <section dir={"ltr"} className={`py-20 transition-all duration-500 ${
             isDarkMode 
                 ? 'bg-gradient-to-b from-[#1F3A93] to-[#0A1128]' 
                 : 'bg-gradient-to-b from-blue-50 to-white'
@@ -159,7 +159,7 @@ const ControlPanel = () => {
                                     : 'shadow-xl shadow-gray-500/30'
                         }`}>
                             <img
-                                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                                src={kitchenPhoto}
                                 alt="Kitchen Lighting Control"
                                 className={`w-full h-[500px] object-cover transition-all duration-500 ${
                                     rooms[0].isOn
@@ -240,88 +240,7 @@ const ControlPanel = () => {
                     </div>
                 </div>
 
-                {/* Scene Presets */}
-                <div className="mt-16">
-                    <h3 className={`text-2xl font-bold text-center mb-8 transition-colors duration-500 ${
-                        isDarkMode ? 'text-white' : 'text-gray-800'
-                    }`}>
-                        الأوضاع المحفوظة
-                    </h3>
-                    
-                    <div className="grid md:grid-cols-4 gap-6">
-                        {[
-                            { name: 'وضع المساء', icon: '🌙', brightness: 40 },
-                            { name: 'وضع القراءة', icon: '📚', brightness: 80 },
-                            { name: 'وضع الحفلات', icon: '🎉', brightness: 100 },
-                            { name: 'وضع النوم', icon: '😴', brightness: 10 }
-                        ].map((preset, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setRooms(rooms.map(room => ({ ...room, brightness: preset.brightness, isOn: preset.brightness > 0 })))}
-                                className={`p-6 rounded-xl text-center transition-all duration-300 hover:scale-105 hover:shadow-lg ${
-                                    isDarkMode 
-                                        ? 'bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700 hover:border-[#00A4FF]/50' 
-                                        : 'bg-white/80 hover:bg-white shadow-md border border-gray-200 hover:border-[#1F3A93]/50'
-                                }`}
-                            >
-                                <div className="text-3xl mb-3">{preset.icon}</div>
-                                <div className={`font-bold mb-2 transition-colors duration-500 ${
-                                    isDarkMode ? 'text-white' : 'text-gray-800'
-                                }`}>{preset.name}</div>
-                                <div className={`text-sm transition-colors duration-500 ${
-                                    isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                                }`}>{preset.brightness}% إضاءة</div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Energy Savings */}
-                <div className={`mt-16 rounded-2xl p-8 text-center transition-all duration-500 ${
-                    isDarkMode 
-                        ? 'bg-gradient-to-r from-green-900/30 to-blue-900/30 border border-green-500/30' 
-                        : 'bg-gradient-to-r from-green-50 to-blue-50 border border-green-200'
-                }`}>
-                    <div className="text-4xl mb-4">💡</div>
-                    <h3 className={`text-2xl font-bold mb-4 transition-colors duration-500 ${
-                        isDarkMode ? 'text-white' : 'text-gray-800'
-                    }`}>
-                        توفير في الطاقة
-                    </h3>
-                    <p className={`text-lg mb-6 transition-colors duration-500 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                    }`}>
-                        نظام الإضاءة الذكي يوفر حتى 60% من استهلاك الكهرباء
-                    </p>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className={`p-4 rounded-lg transition-all duration-300 ${
-                            isDarkMode ? 'bg-gray-800/50' : 'bg-white/80 shadow-md'
-                        }`}>
-                            <div className="text-2xl font-bold text-green-400 mb-2">60%</div>
-                            <div className={`text-sm transition-colors duration-500 ${
-                                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                            }`}>توفير في الطاقة</div>
-                        </div>
-                        <div className={`p-4 rounded-lg transition-all duration-300 ${
-                            isDarkMode ? 'bg-gray-800/50' : 'bg-white/80 shadow-md'
-                        }`}>
-                            <div className={`text-2xl font-bold mb-2 transition-colors duration-500 ${
-                                isDarkMode ? 'text-[#00A4FF]' : 'text-[#1F3A93]'
-                            }`}>25 سنة</div>
-                            <div className={`text-sm transition-colors duration-500 ${
-                                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                            }`}>عمر المصابيح</div>
-                        </div>
-                        <div className={`p-4 rounded-lg transition-all duration-300 ${
-                            isDarkMode ? 'bg-gray-800/50' : 'bg-white/80 shadow-md'
-                        }`}>
-                            <div className="text-2xl font-bold text-yellow-400 mb-2">0</div>
-                            <div className={`text-sm transition-colors duration-500 ${
-                                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                            }`}>انبعاثات كربونية</div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
 
             {/* Custom Slider Styles */}

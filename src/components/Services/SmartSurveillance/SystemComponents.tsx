@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
-
+import watcher2 from "../../../assets/watcher2.png"
+import watcher3 from "../../../assets/watcher3.png"
+import watcher4 from "../../../assets/watcher4.png"
+import watcher5 from "../../../assets/watcher5.png"
 const SystemComponents = () => {
   const { isDarkMode } = useTheme();
 
@@ -9,7 +12,7 @@ const SystemComponents = () => {
       id: 1,
       title: "كاميرات المراقبة",
       description: "تتوفر بنوعين: كاميرات سلكية تحتاج لتمديد كابلات، وكاميرات لاسلكية تعمل عن طريق الواي فاي.",
-      image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: watcher2,
       features: [
         "دقة عالية تصل إلى 4K",
         "رؤية ليلية واضحة",
@@ -21,7 +24,7 @@ const SystemComponents = () => {
       id: 2,
       title: "جهاز تسجيل DVR",
       description: "العقل المدبر في نظام المراقبة السلكي. يوصل بالكاميرات السلكية عن طريق كابلات، ويستقبل الصورة ويسجلها ويخزنها على هارد داخله.",
-      image: "https://images.unsplash.com/photo-1563770557593-978a5a2b7513?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: watcher3,
       features: [
         "تسجيل مستمر 24/7",
         "سهولة استرجاع التسجيلات",
@@ -33,7 +36,7 @@ const SystemComponents = () => {
       id: 3,
       title: "جهاز تسجيل NVR",
       description: "يعمل مع كاميرات المراقبة الشبكية (IP Cameras) ويسجل الفيديو الذي ترسله الكاميرات عن طريق شبكة الإنترنت أو شبكة داخلية (LAN).",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: watcher4,
       features: [
         "دعم كاميرات IP عالية الدقة",
         "إمكانية الوصول عن بعد",
@@ -45,7 +48,7 @@ const SystemComponents = () => {
       id: 4,
       title: "تطبيقات المراقبة",
       description: "تطبيقات للهواتف الذكية وأجهزة الكمبيوتر تتيح متابعة الكاميرات بشكل مباشر من أي مكان في العالم.",
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: watcher5,
       features: [
         "مراقبة حية من أي مكان",
         "إشعارات فورية عند اكتشاف حركة",

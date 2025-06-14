@@ -3,6 +3,7 @@ import PageContainer from '../../components/layout/PageContainer'
 import HeroSection from '../../components/Services/MediaHomeSystem/HeroSection'
 import FeaturesSection from '../../components/Services/MediaHomeSystem/FeaturesSection'
 import InteractiveDemo from '../../components/Services/MediaHomeSystem/InteractiveDemo'
+import VoiceControlDemo from '../../components/Services/MediaHomeSystem/VoiceControlDemo'
 const MediaHomeSystem = () => {
     return (
        <div>
@@ -10,6 +11,7 @@ const MediaHomeSystem = () => {
                 <HeroSection/>
                 <FeaturesSection/>
                 <InteractiveDemo/>
+                <VoiceControlDemo/>
             </PageContainer>
         </div>
     )
